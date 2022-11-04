@@ -12,25 +12,31 @@ const form = document.querySelector("form")
 button.addEventListener("click", (eo) => {
     eo.preventDefault();
 
-    container.innerHTML += `    <div class="task">
+    if (input.value == "" || input.value == null) {
+        alert("please enter a your task");
 
-    <span class="icon-star icon"> </span>
+    } else {
+        container.innerHTML += `    <div class="task">
 
-    ${input.value}
-    <div >
-    <span class="icon-close icon"></span>
-    <span class="icon-frown-o icon"></span>
+        <span class="icon-star icon"> </span>
+    
+        ${input.value}
+        <div >
+        <span class="icon-close icon"></span>
+        <span class="icon-frown-o icon"></span>
+    
+        </div>
+    
+    </div>`
 
-    </div>
+        input.value = ""
+    }
 
-</div>`
-
-    input.value = ""
 })
 
-    /*****************Function of removing task *********************/
+/*****************Function of removing task *********************/
 
-    container.addEventListener("click", (eo) => {
+container.addEventListener("click", (eo) => {
     if (eo.target.className == "icon-close icon") {
         eo.target.parentElement.parentElement.remove();
     }
@@ -40,7 +46,7 @@ button.addEventListener("click", (eo) => {
     else if (eo.target.className == "icon-frown-o icon") {
         eo.target.classList.toggle('dn');
         eo.target.parentElement.innerHTML += `<span class="icon-laughing-face icon"></span>`
-        
+
         // eo.target.parentElement.parentElement.getElementByClassName("text").classList.toggle("finish");
     }
 
@@ -63,10 +69,15 @@ button.addEventListener("click", (eo) => {
         eo.target.classList.remove("toggle")
         container.append(eo.target.parentElement)
     }
-    
-    
+
+
 
 })
+
+
+
+
+
 
 
 
